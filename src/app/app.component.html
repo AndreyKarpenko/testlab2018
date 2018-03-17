@@ -1,20 +1,89 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container main searchInput">
+  <div class="input-group mb-3 serch">
+    <input [(ngModel)]="serch" type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button (click)="getMusic(serch)" type="button" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-search"></span> Search
+      </button>
+    </div>
+  </div>
+  <div id="accordion">
+    <div class="head">
+      <div class="row box">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-2">
+          Artist
+        </div>
+        <div class="col-sm-2">
+          Track
+        </div>
+        <div class="col-sm-2">
+          Collection
+        </div>
+        <div class="col-sm-2">
+          Genre
+        </div>
+        <div class="col-sm-2">
+        </div>
+      </div>
+    </div>
+    <div class="card box odd" *ngFor="let res of music; index as index">
+      <div class="card-header box" [attr.id]="'heading' + index">
+        <h5 class="mb-0">
+          <div (click)="click(index)" class="row box" data-toggle="collapse" [attr.data-target]="'#collapse' + index" aria-expanded="true" [attr.aria-controls]="'collapse' + index">
+            <div class="col-sm-2">
+              <img src="{{res.artworkUrl100}}">
+            </div>
+            <div class="col-sm-2">
+              {{res.artistName}}
+            </div>
+            <div class="col-sm-2">
+              {{res.trackName}}
+            </div>
+            <div class="col-sm-2">
+              {{res.collectionName}}
+            </div>
+            <div class="col-sm-2">
+              {{res.primaryGenreName}}
+            </div>
+            <div class="col-sm-2">
+              <div class="right">
+                <span *ngIf="sign[index]"> - </span>
+                <span *ngIf="!sign[index]"> + </span>
+              </div>
+            </div>
+          </div>
+        </h5>
+      </div>
+
+      <div #span [attr.id]="'collapse' + index" class="collapse odd" [attr.aria-labelledby]="'heading' + index" data-parent="#accordion">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-4">
+              <h4>{{res.artistName}} - {{res.trackName}}</h4>
+            </div>
+            <div class="col-sm-6">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-4">
+              <span class="bold">Collection: </span><span>{{res.collectionName}}</span><br>
+              <span class="bold">Track count: </span><span>{{res.trackCount}}</span><br>
+              <span class="bold">Price: </span><span>{{res.collectionPrice}} USD</span><br>
+            </div>
+            <div class="col-sm-6">
+              <span class="bold">Track duration: </span><span>{{res.trackTimeMillis | time}} min</span><br>
+              <span class="bold">Track price: </span><span>{{res.trackPrice}} USD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 

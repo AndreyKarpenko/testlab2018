@@ -1,0 +1,39 @@
+div.main {
+  background-color: #c9fff5;
+}
+div.box {
+  border: none;
+  font-size: 15px !important;
+  font-family: Arial;
+  font-weight: bolder;
+  text-align: left;
+}
+div.serch {
+  width: 30%;
+  margin: auto;
+}
+
+span.bold {
+  font-weight: bold;
+}
+
+.head {
+  margin: 0 15px;
+}
+
+.odd:nth-child(odd) {
+  background-color: #c9fff5;
+}
+
+.card-header {
+  background-color: rgba(0,0,0,.0);
+}
+
+.searchInput {
+  padding: 15px 0;
+}
+
+.right {
+  text-align: right;
+  font-size: 40px;
+}
